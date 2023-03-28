@@ -1,0 +1,28 @@
+## coding assignment
+You should already have done the steps described in the getting started page  **[here](https://learn.codethedream.org/getting-started-with-node-development/)**. That page describes how to get git, the VSCode Editor, Node, and Postman. All of those should be installed when you start this lesson.
+
+The next step is to do a git fork of your starter repository for this lesson, which is found  **[here](https://github.com/Code-the-Dream-School/node-express-course)**. The fork button is on the upper right of that page. Once the fork is complete, you clone your fork. Please don’t clone the original repository, as if you do that, you will not be able to push your work to github.
+
+You do all of your work inside the directory created by the git clone, which is node-express-course. Change directories so that you are inside that directory. Then create the branch for this week, using the command
+```
+git checkout -b week1
+```
+Now change the directory to the one that says 01-node-tutorial. Then do:
+
+```
+mkdir answers
+cp -r content answers
+```
+to create an answers directory within the node-express-course/01-node-tutorial directory, and to create also the content directory and files within it. The answers directory is where you put your work for this part of the lesson.
+
+Create the following programs for this lesson, all within the answers dirctory.  By the way, there are examples of each of the programs you need to create in the 01-node-tutorial directory (in case you get stuck) but try to do your own work.
+
+1. intro.js: This program should use console.log to write something to the screen.  While you are in the answers directory, run node intro to verify that the program runs.  You can also put JavaScript logic in your program.
+2. globals.js: This program should use console.log to write some globals to the screen.  Set an environment variable with the following command:  `export MY_VAR="Hi there!"` The program should then use console.log to print out the values of __dirname (a global) and process.env.MY_VAR (process is also a global, and contains the environment variables you set.)  You could print out other globals as well.  For each of these programs, you invoke them with node to make sure they work.
+3. For this part, you write multiple programs.  names.js, utils.js, alternative-flavor.js, and mind-grenade.js are modules that you load, using require statements, from modules.js, which is the main program.  names.js should export multiple values in an object.  utils.js should export a single value, which is a function.   alternative-flavor.js should export multiple values in the module.exports object, but it should use the alternative approach, adding each value one at a time.  The exported values from each should be used in modules.js, logging results to the console so that you know it is working.  mind-grenade.js may not export anything, but it should contain a function that logs something to the console.  You should then call that function within the mainline of mind-grenate.js.  This is to demonstrate when a module is loaded with a require statement, anything in the mainline code of the loaded module runs.
+4. Write os.js.  This should load the built in os module and display some interesting information from the resulting object.
+5. Write path.js.  This should load the path module and use it in some interesting way.
+6. Write fs-sync.js.  This should load the fs module, use it to write 3 lines to a file using the synchronous forms of the file system functions, and using the append flag for each line after the first.  Then it should read each line from the file and log it to the console.
+7. Write fs-async.js.  This should load the fs module, and use the asynchronous forms of the file system functions to write 3 lines to a file.  Now, be careful here!  This is our first use of asynchronous functions in this class, but we are going to use them a lot!  First, you need to use the append flag for all but the first line.  Second, each time you write a line to the file, you need to have a callback, because the write to the operation is asynchronous.  Third, for each line you write, you need to do the write for the line that follows in the callback -- otherwise the operations won't happen in order.  Put console.log statements at various points in your code to tell you when each step completes.  Then run the code.  Do the console log statements appear in the order you expect?  Run the program several times and verify that the file is created correctly.
+8. Write http.js.  This program should use the built in http module to create a simple web server that listens on port 3000.  Then, in the callback that creates the server, add code to send back information for the '/'  and several other urls.  Run the program, and test it from your browser.  You will need to do a ctrl-c (on mac, cmd-c) to exit your program.
+9. prompter.js: Consider this program: [prompter.js](https://gist.github.com/jrmcgarvey/b8af09fbea667384c32dce9499b42627).  This is a program for a simple server.  Try it out!  It sends back the contents of an array of items, and it also sends an HTML form.  If you submit data in the form, a POST operation is sent to the server, and the server adds the data to the array.  There is a simple parser for the body of the post.  The parser uses events -- we'll get to events -- that collect the data from the req object.  This means it is asynchronous, so we need to handle the result in a callback.  Then, we send a redirect back to the '/' url.  So the last part of the assignment is: Change this program so it does something interesting!  Be creative!  You could change it into a number guessing game, for example.
