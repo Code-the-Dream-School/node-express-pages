@@ -51,15 +51,17 @@ Once your reviewer has approved your lesson pull request, THEN you merge the pul
 
 Once you have finished the assignment, you can be creative and make variations on the instructions
 and what the instructor shows you. Through creative experimentation, 
-you will learn much more than you would have if you just
-follow instructions. Of course, there is also a risk of changing so much that you get 
+you will learn much more than you would if you had just
+followed instructions. Of course, there is also a risk of changing so much that you get 
 confused, overwhelmed, and maybe stuck, so for safety, you do your experimentation in a special branch.
 For example, if you have just completed week 1, while the week1 branch is active, you could do:
 ```
 git branch -b week1plus
 ```
 Then, try some things! Once you are done experimenting, add and commmit your changes.  You don't
-need to push them to github.  Subsequent lessons build on the previous ones, so you should checkout
+need to push them to github. Again, creativity is crucial for learning. It also allows you to take full advantage of the resources CTD provides. Can't figure something out? Bring your question to a review session! Not sure if you did something the right way? Your assignment reviewer will tell you! 
+
+Subsequent lessons build on the previous ones, so you should checkout
 the week1 branch before creating the lesson branch for week2.
 
 ## Recovering From a Common Mistake
