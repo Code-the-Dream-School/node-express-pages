@@ -34,10 +34,16 @@ git push origin week1
 Once you have finished the lesson, do a git add, commit, and push again.  Now you
 are ready to create a pull request for your lesson. Go to your github in your browser.  Find the repository
 you created with the fork.  Click on pull requests, new pull request.  The base repository for the
-pull request must be the main or master branch of your repository on your github.  Be sure that the
+pull request must be the main or master branch of your repository on your github.  
+  
+Be sure that the
 base is not for the Code-The-Dream-School repository, because if it is, you will not be able to merge
 your branch after the review is complete.  The head repository for the pull request must be your lesson
-branch.  Once you have created the pull request, click on Files changed.  You should see the changes
+branch.  See the picture below.
+
+![Pull Request Creation](lesson-pull.png)
+
+Once you have created the pull request, click on Files changed.  You should see the changes
 you made.  Then click on pull requests again, and copy the link for the pull request you just made.
 This is what you submit using the homework submission form.
 
