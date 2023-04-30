@@ -53,6 +53,14 @@ If changes are necessary, you make them to the same lesson branch.  Then you add
 your changes.  The additional changes are automatically added to the same pull request.
 Once your reviewer has approved your lesson pull request, THEN you merge the pull request.
 
+Suppose you start working on the assignment for week2 in a week2 branch, and then your reviewer asks
+for changes to your week1 assignment.  Do a "git stash" to save your week2 changes.  Then checkout the
+week1 branch.  While the week1 branch is active, make the changes that your reviewer has requested, add those
+changes, and push them to the week1 branch of your github repository.  Then checkout the week2
+branch again.  Do "git merge week1".  This will add your week1 updates to your week2 branch.  Then
+do "git stash apply" to get back the work for week2.  (Once in a while, you may get a merge conflict
+when doing these steps.  Ask a mentor to help you resolve the merge conflict.)
+
 ## Creativity and Experimentation
 
 Once you have finished the assignment, you can be creative and make variations on the instructions
