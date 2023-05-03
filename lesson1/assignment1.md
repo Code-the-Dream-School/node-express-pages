@@ -7,12 +7,8 @@ You do all of your work inside the directory created by the git clone, which is 
 ```
 git checkout -b week1
 ```
-Now change the directory to the one that says 01-node-tutorial. Then do:
-```
-mkdir answers
-cp -r content answers
-```
-to create an answers directory within the node-express-course/01-node-tutorial directory, and to create also the content directory and files within it. The answers directory is where you put your work for this part of the lesson.
+Now change the directory to the one that says 01-node-tutorial/answers.  You'll do all of
+this week's work inside this directory.
 
 Create the following programs for this lesson, all within the answers directory.  By the way, there are examples of each of the programs you need to create in the 01-node-tutorial directory (in case you get stuck) but try to do your own work.  If you need to review a section of the video for any of these exercises,
 view the video within youtube, but not in full screen mode.  The panel on the right shows you the
@@ -35,14 +31,16 @@ will work one way on Windows, where the directory separator is a backslash, and 
 platforms, where the directory separator is a slash. 
 6. Write fs-sync.js.  This should load writeFileSync and readFileSync from the fs module.  Then use writeFileSync
 to write 3 lines to a file, using the append flag for each line after the first.  Then use readFileSync
-to read the file, and log the contents to the console.
+to read the file, and log the contents to the console.  Be sure you create the file in the
+temporary directory.  That will ensure that it isn't pushed to github when you submit your answers.
 7. Write fs-async.js.  This should load the fs module, and use the asynchronous function
-writeFile to write 3 lines to a file.  Now, be careful here!  This is our first use of asynchronous functions in this class, but we are going to use them a lot!  First, you need to use the append flag for all but the first line.  Second, each time you write a line to the file, you need to have a callback, because the write to the operation is asynchronous.  Third, for each line you write, you need to do the write for the line that follows in the callback -- otherwise the operations won't happen in order.  Put console.log statements at various points in your code to tell you when each step completes.  Then run the code.  Do the console log statements appear in the order you expect?  Run the program several times and verify that the file is created correctly.  Here is how you might start:
+writeFile to write 3 lines to a file in the temporary directory.
+Now, be careful here!  This is our first use of asynchronous functions in this class, but we are going to use them a lot!  First, you need to use the append flag for all but the first line.  Second, each time you write a line to the file, you need to have a callback, because the write to the operation is asynchronous.  Third, for each line you write, you need to do the write for the line that follows in the callback -- otherwise the operations won't happen in order.  Put console.log statements at various points in your code to tell you when each step completes.  Then run the code.  Do the console log statements appear in the order you expect?  Run the program several times and verify that the file is created correctly.  Here is how you might start:
     ```
     const { writeFile } = require('fs');
 
     console.log("at start");
-    writeFile('./content/output.txt', 'This is line 1\n', (err, result) => {
+    writeFile('./temporary/output.txt', 'This is line 1\n', (err, result) => {
     console.log("at point 1")
     if (err) {
         console.log("This error happened: ", err);
@@ -51,16 +49,27 @@ writeFile to write 3 lines to a file.  Now, be careful here!  This is our first 
     }
     })
     console.log('at end');
+    ```
+    To get the lines to be written in order, you end up with a long chain of callbacks, which is
+    called "callback hell".  We'll learn a better way to do this.
 8. Write http.js.  This program should use the built in http module to create a simple web server that listens on port 3000.  This is done with the createServer call.  You pass it a function 
 that checks req.url, and depending on what the URL is, sends back a message to the browser screen,
 for '/' and several other URLs.  Then have your code listen on port 3000, run it, and test it from
 your browser, using http://localhost:3000 as the url.
 You can look at 12-http.js for the instructor's answer (except that program listens on 5000).  You will need to do a ctrl-c to exit your program.
-9. prompter.js: Consider this program: [prompter.js](https://gist.github.com/jrmcgarvey/b8af09fbea667384c32dce9499b42627).  This is a program for a simple server.  Try it out!  It
-just puts up a form.  Then, when the user submits the form, it echoes back what was
+9. Within your answers directory is a program called prompter.js. This is a program for a simple server.
+Try it out!  It just puts up a form, which you can access from your browser at http://localhost:3000.  Then, when the user submits the form, it echoes back what was
 submitted, and displays the form again.  You don't have to worry about how it works.  There
 is a simple body parser to read any values submitted with the form, and that parser returns
 a hash with the name and value of each.  Because the parser is asynchronous, you get back
 the hash in a callback.
 
-    Now, your task is to change this program so that it does something interesting! First, you can change the variables that you want to store when you get the form back. Then, you can change the form itself, and you can use string interpolation to insert the values of your variables. Finally, you change the logic that handles the hash you get when the user submits the form. So, for example, you could change the input field to be a dropdown with various colors, and you could set the background color of the body to be what the user chooses. Or, you could make a number guessing game. Pick a random number, and let the user know if their guess is low or high. You'd change the input field so that it accepts only numeric input.
+    Now, your task is to change this program so that it does something interesting! First, you can change the variables that you want to store when you get the form back. Then, you can change the form itself
+    to return the values you want from the user, which you store in those variables.  Then, you can use string interpolation to insert the values of your variables into the HTML.
+    Finally, you change the logic that handles the 
+    hash of values you get when the user submits the form, so that you save the values the user submits.
+    The places you would change are marked in the code.
+    
+    For example, you could change the input field to be a dropdown with various colors, and you could set the background color of the body to be what the user chooses. Or, you could make a number guessing game: 
+    Start with a random number from 1 to 100, let the user guess, and tell the user if their guess is low or high. In this case, you'd change the input field so that it accepts only numeric input (but when it
+    is returned in the hash, it will be a string, so you'd have to convert it.)
