@@ -1,3 +1,17 @@
+# CTD Node/Express Class Lesson 1: Node Introduction
+**Learning Materials**
+----------------------
+
+A simple introduction to Node is available at **[this link](https://www.youtube.com/watch?v=uVwtVBpw7RQ)**. Just watch the first video in the series.
+
+Be aware of this **[descriptive introduction to Node](https://medium.com/@frankstepanski/beginning-node-and-express-3482238c5c94)**, by our staff member Frank. There are a number of sections that are too technical for now, but you may want to refer to it in the future.
+
+Watch the first 1:45:57 of **[this video](https://www.youtube.com/watch?v=Oe421EPjeBE)**. You may want to
+first review the coding assignment below.  In your assignment, you create programs similar to those
+that the instructor demonstrates.
+
+**Assignments**
+---------------
 ## coding assignment
 You should already have done the steps described in the getting started page  **[here](https://learn.codethedream.org/getting-started-with-node-development/)**. That page describes how to get git, the VSCode Editor, Node, and Postman. All of those should be installed when you start this lesson.
 
@@ -73,3 +87,26 @@ the hash in a callback.
     For example, you could change the input field to be a dropdown with various colors, and you could set the background color of the body to be what the user chooses. Or, you could make a number guessing game: 
     Start with a random number from 1 to 100, let the user guess, and tell the user if their guess is low or high. In this case, you'd change the input field so that it accepts only numeric input (but when it
     is returned in the hash, it will be a string, so you'd have to convert it.)
+
+    **Mindset Assignment**
+
+No Mindset Assignment for your first week! Just get comfortable finding your way around the class page, github, etc. Don't forget to reach out to mentors/classmates/Class Coordinator if you need help getting settled in this week!
+
+**Submitting Your Work**
+------------------------
+
+When you are done, do the following to submit your work:
+
+    git add -A
+    git commit -m "answers for lesson 1"
+    git push origin week1
+
+Then go to your github repository -- the one you created with a fork. Create a pull request. The target of the pull request should be the main branch of the repository you created. Once you have created the pull request, you submit your link to the pull request using the submission form link in the next paragraph.
+
+**When you’ve completed your Coding Assignment (reminder there is no Mindset Assignment this week) submit all of your work using:**
+
+[**Homework Assignment Submission Form**](https://airtable.com/shrBpqHbS6wgInoF9)
+
+Note: Once an assignment has been reviewed, you may want to merge it into the main branch. You should not do this until your pull request has been reviewed, as the reviewer may recommend changes. The merge process is done on Github: You select the pull request and merge it. Then, on your workstation, do a git checkout of the main branch and a git pull.
+
+Once you do your git pull, **do not merge it** until your assignment reviewer has reviewed it. Your reviewer may request changes. You make these changes to the same branch, add and commit them, and then push that same branch so that the changes are added to your pull request. Once your reviewer has approved your pull request, then you merge it. Each week, create your new branch from the branch for the previous lesson, so that your lessons build on one another.
