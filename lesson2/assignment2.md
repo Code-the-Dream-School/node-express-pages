@@ -197,9 +197,11 @@ above the listen statement:
     })
     ``` 
     Then test this (npm run dev) and try with your browser to see the events the server is emitting.
-4. Write a program customEmitter.js.  In it, create one or several emitters that emit 
-one or several events with
-one or several parameters.  Then use the emitter "on" function to handle the events each emits, logging the parameters to the screen . Then use the emitter "emit" function to emit several events, and make sure that
+4. Write a program customEmitter.js.  In it, create one or several emitters. 
+Then use the emitter "on" function to handle the events you will emit,
+logging the parameters to the screen.
+Then use the emitter "emit" function to emit several events, with one or several parameters,
+and make sure that
 the events are logged by your event handlers.  This is your chance to be creative!  You could
 have an event handler that emits a different event to be picked up by a different handler, for
 example.  
