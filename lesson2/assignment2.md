@@ -128,6 +128,27 @@ const myFunc4 = () => {  // the other way to do it, via a wrapper:
     // All you'd get back is a promise, not the result.
 }
 ```
+There's one more trick with the .then.  Suppose you need to make a string of calls to async
+functions.  You can chain the .then statements as follows:
+```
+const myFunc6(() => {
+    myFunc() // an async function, so it returns a promise
+    .then((result) =>{
+        console.log("got the first result")
+        return myFunc() // here we call it again, we return the promise myFunc returns
+    })
+    .then((result) =>{
+        console.log("got the second result")
+    })
+    .catch((err)={
+        console.log("An error occurred: ", err)
+    })
+    
+})
+```
+So, you can chain a collection of async calls with .then statements, and one .catch
+at the end.
+
 Ok, that's the summary.  Be sure that you understand this.  We will do a lot of asynchronous
 programming in Express.
 
@@ -155,9 +176,11 @@ Instead you just use cascading .then statements in your mainline, like this:
     ```
     writeFile(...) // write line 1
     .then(() =>{
-    writeFile(...)  // write line 2
+       return writeFile(...)  // write line 2.  
+       // Return the promise so you can chain the .then statements
     })
-    .then // write the third line, and then call readFile to read it back out, and then log it.
+    .then // write the third line, and follow that with two more .then blocks,
+    // one to call readFile to read it back out, and one to log the data to the screen.
     ...
     .catch((error) => {
         console.log("An error occurred: ", error)
@@ -169,18 +192,50 @@ Instead you just use cascading .then statements in your mainline, like this:
 above the listen statement:
     ```
     server.on('request', (req) => {
-    console.log("event received:", req.url, req.method)
+    console.log("event received: ", req.method, req.url)
     })
     ``` 
-    Then test this (npm run dev) and try with your browser to see the events the server is sending.
-4. Write a program customEmitter.js.  In it, create several custom emitters that emit events with
-several parameters.  Then use the emitter "on" function to handle the events each emits, logging the parameters to the screen . Then use an emitter "emit" function to emit several events, and make sure that
-the events are logged by your event handlers.  This is your chance to be creative!
-have each emitter send several different kinds of events with different parameters, and 
-you can have a handler for one emitter that causes the other emitter to emit an event -- but you may
-find that the program gets in a loop if you're not careful!  You could also
-use the global setInterval function, and in the callback, emit an event, so that one is emitted
-every few seconds.
+    Then test this (npm run dev) and try with your browser to see the events the server is emitting.
+4. Write a program customEmitter.js.  In it, create one or several emitters that emit 
+one or several events with
+one or several parameters.  Then use the emitter "on" function to handle the events each emits, logging the parameters to the screen . Then use the emitter "emit" function to emit several events, and make sure that
+the events are logged by your event handlers.  This is your chance to be creative!  You could
+have an event handler that emits a different event to be picked up by a different handler, for
+example.  
+
+    Here's a couple tricks to try.  You can trigger events with a timer, as follows:
+    ```
+    const EventEmitter = require('events')
+
+    const emitter = new EventEmitter()
+
+    setInterval(()=> {
+        emitter.emit("timer","hi there")
+    }, 2000)
+
+    emitter.on("timer", (msg) => console.log(msg))
+    ```
+    Or, you could make an async function that waits on an event:
+    ```
+    const EventEmitter = require('events')
+
+    const emitter = new EventEmitter()
+
+    const waitForEvent = () => {
+        return new Promise((resolve) => {
+            emitter.on("happens", (msg) => resolve(msg))
+        })
+    }
+
+    const doWait = async () => {
+        const msg = await waitForEvent()
+        console.log("We got an event! Here it is: ", msg)
+    }
+
+    doWait()
+    emitter.emit("happens", "Hello World!")
+    ```
+    (I guess that last one is not so easy.  We haven't talked about creating promises.)
 5. Change back to the 01-node-tutorial directory and run 15-create-big-file.js.  This creates a
 big file in the content directory.  You'll note that the instructor has a .gitignore that
 includes this file name so that it isn't stored in github.
