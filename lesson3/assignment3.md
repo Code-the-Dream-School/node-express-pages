@@ -87,18 +87,19 @@ to the app.get statement, and test that it works.
 12. The user may also want to do a simple search, instead of getting all the products.
 In this case, the url would contain a query string, like:
     ```
-    /api/v1/products?search=al&limit=5
+    /api/v1/query?search=al&limit=5
     ```
     What this means, in this case, is that the user wants to see all products where
     the name starts with al, but the user wants to see no more than 5 products.
-    When the app.get for /api/v1/products is called, req.query is a hash that
+    When the app.get for /api/v1/query is called, req.query is a hash that
     may contain values for search or limit or both or neither, depending on what
     the user puts in the query string.  Again, there are array methods you can
     use to find that list.  They are Array.filter() and Array.slice().
-    Add logic to the app.get statement to handle these query strings, and test
+    Add a new app.get statement for /api/v1/query, and include
+    logic to handle these query strings. Then test
     it out.
 13. Add some more logic: you choose! For example, the user might want to
-send a regular expression instead of a search for starting letters.  Or
+send a regular expression instead of search for starting letters.  Or
 the user may only want products that cost less than 20.00.
 14. Optional additional item: Add a button to your index.html.  Add JavaScript,
 either within index.html or in a JavaScript file it references (which would also
